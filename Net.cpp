@@ -169,7 +169,7 @@ void Net::run(const std::vector<std::vector<double>> &inputs, const std::vector<
 }
 
 /// PERSISTENCE
-
+// TODO: Save deltaWeights
 void Net::save(const std::string &filename) const
 {
   std::ofstream file;
