@@ -10,6 +10,7 @@ Neuron::Neuron(int outputs) {
   for(int i = 0; i < outputs; ++i)
   {
     connections.emplace_back((double)rand() / RAND_MAX); // could be random
+    delta_weights.emplace_back(0);
   }
   bias = (double)rand() / RAND_MAX;
 }
@@ -47,9 +48,12 @@ void Neuron::updateWeight(int j, double j_gradient)
   double delta_weight =
           Neuron::eta
           * activation
-          * j_gradient; // + alpha * old_delta_weight
+          * j_gradient
+          + alpha // add momentum
+          * delta_weights[j];
   
   connections[j] += delta_weight;
+  delta_weights[j] = delta_weight;
 }
 
 void Neuron::calcGradient(const std::vector<Neuron>& j_layer)

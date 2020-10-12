@@ -31,6 +31,7 @@ public:
 private:
   double activation = 0; // start 0 (activation range is -1 to 1)
   std::vector<double> connections; // connection weight to the NEXT layer
+  std::vector<double> delta_weights; // connection weight to the NEXT layer
   double bias = 0; // TODO: research better initialization technique
   
   std::vector<double> gradients;
